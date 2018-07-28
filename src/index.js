@@ -67,7 +67,11 @@ export default class Intercom extends Component {
     window.intercomSettings = { ...otherProps, app_id: appID };
 
     if (window.Intercom) {
-      window.Intercom('update', otherProps);
+      try {
+        window.Intercom('update', otherProps);
+      } catch (e) {
+        console.log('react-intercom update error: ' + e.message);
+      }
     }
   }
 
